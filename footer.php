@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="container">
-        <p>&copy; 2025 MonLMS • Mini projet formation • Fait avec ❤️ et beaucoup de café</p>
+        <p>&copy; 2025 MonLMS • Mini projet formation </p>
     </div>
 </footer>
 

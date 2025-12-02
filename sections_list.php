@@ -10,6 +10,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <?php include 'config.php'; ?>
 
     <main class="main-container">
         <div class="container">
@@ -19,7 +20,7 @@
                     <i class="fas fa-arrow-left"></i> Retour aux cours
                 </a>
             </div>
-
+            
             <div class="table-wrapper">
                 <table class="styled-table">
                     <thead>
@@ -34,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Exemple de lignes (tu les généreras en PHP plus tard) -->
+                       
                         <tr>
                             <td>1</td>
                             <td>Introduction au projet LMS</td>
@@ -73,7 +74,7 @@
                                 <a href="sections_delete.php?id=27" class="btn-delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
-                        <!-- Ajoute autant de lignes que tu veux -->
+                       
                     </tbody>
                 </table>
             </div>

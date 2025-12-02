@@ -10,15 +10,16 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <?php include 'config.php'; ?>
 
     <main class="main-container">
         <div class="container">
             <div class="form-wrapper">
                 <h2><i class="fas fa-book-medical"></i> Nouveau cours</h2>
-                <!-- Change le titre pour edit : <h2>Modifier le cours</h2> -->
+               
 
-                <form action="courses_store.php" method="POST" class="course-form">
-                    <!-- Pour l'édition : <input type="hidden" name="id" value="<?= $course['id'] ?>"> -->
+                <form action="courses_create.php" method="POST" class="course-form">
+                   
 
                     <div class="form-group">
                         <label for="title">Titre du cours *</label>
@@ -51,6 +52,9 @@
         </div>
     </main>
 
+    <?php 
+    
+    ?>
     <?php include 'footer.php'; ?>
 </body>
 </html>

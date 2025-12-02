@@ -10,44 +10,57 @@
 </head>
 <body>
    <?php include 'header.php'; ?>
-
-    <main class="main-container">
-        <div class="container">
-            <div class="page-header">
-                <h2><i class="fas fa-graduation-cap"></i> Gestion des Cours</h2>
-                <a href="courses_create.php" class="btn-primary">
-                    <i class="fas fa-plus"></i> Nouveau cours
+   <?php include 'config.php'; ?>
+   
+   <main class="main-container">
+       <div class="container">
+           <div class="page-header">
+               <h2><i class="fas fa-graduation-cap"></i> Gestion des Cours</h2>
+               <a href="courses_create.php" class="btn-primary">
+                   <i class="fas fa-plus"></i> Nouveau cours
                 </a>
-                 <a href="sections_list.php" class="btn-secondary">
-            Toutes les sections
-           </a>
+                <a href="sections_list.php" class="btn-secondary">
+                    Toutes les sections
+                </a>
             </div>
-           
-
-            <!-- Liste des cours -->
+            
+            
+            
             <div class="courses-grid">
-                <!-- Cours 1 -->
-                <div class="course-card">
-                    <div class="course-header">
-                        <span class="level beginner">Débutant</span>
-                        <h3>HTML & CSS de A à Z</h3>
-                    </div>
-                    <p class="course-desc">
-                        Apprenez à créer des sites web modernes et responsive avec HTML5 et CSS3.
-                    </p>
-                    <div class="course-meta">
+                
+                <?php 
+                $sql =("select * from courses ");
+                $result= mysqli_query($conect,$sql);
+                while($row=mysqli_fetch_assoc($result)){
+                echo '<div class="course-card">
+                       <div class="course-header">';
+                       if($row["level"]=="Débutant"){
+                       echo ' <span class="level beginner">'.$row["level"].'</span>';
+                    }elseif($row["level"]=="Avancé"){
+                           echo ' <span class="level advanced">'.$row["level"].'</span>';
+                           
+                        }else{
+                           echo ' <span class="level intermediate">'.$row["level"].'</span>';
+                        
+                       }
+                        echo'   <h3>'.$row["title"].'</h3>
+                        </div>
+                        <p class="course-desc">'.$row["description"].' </p>
+                          <div class="course-meta">
                         <span><i class="fas fa-book-open"></i> 12 sections</span>
-                        <span><i class="fas fa-clock"></i> Créé le 15/11/2025</span>
+                        <span><i class="fas fa-clock"></i> Créé le '.$row["created_at"].'</span>
                     </div>
-                    <div class="course-actions">
+                        <div class="course-actions">
                         <a href="sections_by_course.php?id=1" class="btn-small">Voir les sections</a>
                         <a href="courses_edit.php?id=1" class="btn-edit"><i class="fas fa-edit"></i></a>
                         <a href="courses_delete.php?id=1" class="btn-delete"><i class="fas fa-trash"></i></a>
                     </div>
-                </div>
-
+                </div>';
+                }
+                ?>
+                
                 <!-- Cours 2 -->
-                <div class="course-card">
+                <!-- <div class="course-card">
                     <div class="course-header">
                         <span class="level intermediate">Intermédiaire</span>
                         <h3>PHP 8 Procédural & MySQL</h3>
@@ -64,10 +77,10 @@
                         <a href="courses_edit.php?id=2" class="btn-edit"><i class="fas fa-edit"></i></a>
                         <a href="courses_delete.php?id=2" class="btn-delete"><i class="fas fa-trash"></i></a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Cours 3 -->
-                <div class="course-card">
+                <!-- <div class="course-card">
                     <div class="course-header">
                         <span class="level advanced">Avancé</span>
                         <h3>JavaScript Moderne ES6+</h3>
@@ -84,7 +97,7 @@
                         <a href="courses_edit.php?id=3" class="btn-edit"><i class="fas fa-edit"></i></a>
                         <a href="courses_delete.php?id=3" class="btn-delete"><i class="fas fa-trash"></i></a>
                     </div>
-                </div>
+                </div> -->
         
             </div>
         </div>
