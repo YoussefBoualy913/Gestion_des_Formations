@@ -53,7 +53,14 @@
     </main>
 
     <?php 
-    
+    if(!empty($_POST)){
+    $title=$_POST["title"];
+    $description=$_POST["description"];
+    $level=$_POST["level"];
+
+    $sql = ( "insert into  `courses`(`title`,`description`,`level`) values('$title','$description','$level')");
+    $result= mysqli_query($conect,$sql);
+    }
     ?>
     <?php include 'footer.php'; ?>
 </body>

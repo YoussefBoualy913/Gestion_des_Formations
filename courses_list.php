@@ -51,9 +51,9 @@
                         <span><i class="fas fa-clock"></i> Créé le '.$row["created_at"].'</span>
                     </div>
                         <div class="course-actions">
-                        <a href="sections_by_course.php?id=1" class="btn-small">Voir les sections</a>
-                        <a href="courses_edit.php?id=1" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="courses_delete.php?id=1" class="btn-delete"><i class="fas fa-trash"></i></a>
+                        <a href="sections_by_course.php?id='.$row["id"].'" class="btn-small">Voir les sections</a>
+                        <a href="courses_edit.php?id='.$row["id"].'" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="courses_delete.php?id='.$row["id"].'" class="btn-delete"><i class="fas fa-trash"></i></a>
                     </div>
                 </div>';
                 }

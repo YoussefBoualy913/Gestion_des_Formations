@@ -10,15 +10,15 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-
+<?php include 'config.php'; ?>
     <main class="main-container">
         <div class="container">
             <div class="form-wrapper">
                 <h2><i class="fas fa-book-medical"></i>Modifier le cours</h2>
                
 
-                <form action="courses_store.php" method="POST" class="course-form">
-                <input type="hidden" name="id" value="<?= $course['id'] ?>">
+                <form action="courses_edit.php" method="POST" class="course-form">
+                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
 
                     <div class="form-group">
                         <label for="title">Titre du cours *</label>
@@ -50,7 +50,17 @@
             </div>
         </div>
     </main>
-
+    <?php 
+    if(!empty($_POST)){
+     $title=$_POST["title"];
+    $description=$_POST["description"];
+    $level=$_POST["level"];
+    $id=$_POST["id"];
+ $sql = "UPDATE `courses` SET `title`='$title',`description`='$description',`level`='$level' WHERE id=$id";
+    $result= mysqli_query($conect,$sql);
+    header('location:courses_list.php?');
+    }
+    ?>
     <?php include 'footer.php'; ?>
 </body>
 </html>
