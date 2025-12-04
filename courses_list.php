@@ -29,25 +29,41 @@
             <div class="courses-grid">
                 
                 <?php 
-                $sql =("select * from courses ");
+                $sql = <<<EOD
+    SELECT COALESCE(MAX(s.position), 0)  max_position, 
+       c.id,
+       c.title, 
+       c.level, 
+        c.created_at,
+       c.description
+FROM courses c
+LEFT JOIN sections s
+ON c.id = s.course_id
+GROUP BY c.id, c.title, c.level, c.description, c.created_at
+EOD;
+
                 $result= mysqli_query($conect,$sql);
+                
                 while($row=mysqli_fetch_assoc($result)){
-                echo '<div class="course-card">
-                       <div class="course-header">';
-                       if($row["level"]=="Débutant"){
-                       echo ' <span class="level beginner">'.$row["level"].'</span>';
+                    echo '<div class="course-card">
+                    <div class="course-header">';
+                    if($row["level"]=="Débutant"){
+                        echo ' <span class="level beginner">'.$row["level"].'</span>';
                     }elseif($row["level"]=="Avancé"){
-                           echo ' <span class="level advanced">'.$row["level"].'</span>';
-                           
-                        }else{
-                           echo ' <span class="level intermediate">'.$row["level"].'</span>';
+                        echo ' <span class="level advanced">'.$row["level"].'</span>';
                         
-                       }
-                        echo'   <h3>'.$row["title"].'</h3>
-                        </div>
-                        <p class="course-desc">'.$row["description"].' </p>
-                          <div class="course-meta">
-                        <span><i class="fas fa-book-open"></i> 12 sections</span>
+                    }else{
+                        echo ' <span class="level intermediate">'.$row["level"].'</span>';
+                        
+                    }
+                    echo'   <h3>'.$row["title"].'</h3>
+                    </div>
+                    <p class="course-desc">'.$row["description"].' </p>
+                    <div class="course-meta">';
+                    $idcours=$row['id'];
+                    $pos= $row["max_position"];
+                    
+                       echo  '<span><i class="fas fa-book-open"></i>'. $pos .'sections</span>
                         <span><i class="fas fa-clock"></i> Créé le '.$row["created_at"].'</span>
                     </div>
                         <div class="course-actions">
@@ -107,7 +123,7 @@
 
     <script>
         // Switch thème clair/sombre (optionnel, tu peux supprimer si tu veux 0 JS)
-        const toggle = document.getElementById('theme-switch');
+        const toggleh = document.getElementById('theme-switch');
         toggle.addEventListener('change', () => {
             document.body.classList.toggle('light-theme');
         });

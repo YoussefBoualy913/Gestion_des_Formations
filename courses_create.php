@@ -53,7 +53,7 @@
     </main>
 
     <?php 
-    if(!empty($_POST)){
+    if(isset($_POST["title"])){
     $title=$_POST["title"];
     $description=$_POST["description"];
     $level=$_POST["level"];

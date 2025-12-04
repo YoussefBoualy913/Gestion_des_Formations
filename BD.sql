@@ -11,12 +11,13 @@ created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 -- crée table sections
 CREATE TABLE sections(
 id INT PRIMARY KEY AUTO_INCREMENT,
-course_id INT,
-title VARCHAR(50),
+course_id INT NOT NULL,
+title VARCHAR(50) NOT NULL,
 content TEXT,
-position INT,
+position INT NOT NULL,
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (course_id) REFERENCES courses(id)
+UNIQUE(course_id,position);
 );
 
 -- chalenge_1_sql
