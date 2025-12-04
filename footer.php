@@ -5,8 +5,7 @@
 </footer>
 
 <script>
-    // Toggle thème (tu peux supprimer si tu ne veux aucun JS)
-    const toggle = document.getElementById('theme-switch');
+ const toggle = document.getElementById('theme-switch');
 if (toggle) {
     toggle.addEventListener('change', () => {
         document.body.classList.toggle('light-theme');

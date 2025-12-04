@@ -61,60 +61,21 @@ EOD;
                     <p class="course-desc">'.$row["description"].' </p>
                     <div class="course-meta">';
                     $idcours=$row['id'];
-                    $pos= $row["max_position"];
+                    $pos= $row["max_position"]; 
+                    $datecreet= $row["max_position"];
                     
-                       echo  '<span><i class="fas fa-book-open"></i>'. $pos .'sections</span>
-                        <span><i class="fas fa-clock"></i> Créé le '.$row["created_at"].'</span>
+                       echo  "<span><i class='fas fa-book-open'></i> $pos sections</span>
+                        <span><i class='fas fa-clock'></i> Créé le $datecreet </span>
                     </div>
-                        <div class="course-actions">
-                        <a href="sections_by_course.php?id='.$row["id"].'" class="btn-small">Voir les sections</a>
-                        <a href="courses_edit.php?id='.$row["id"].'" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="courses_delete.php?id='.$row["id"].'" class="btn-delete"><i class="fas fa-trash"></i></a>
+                        <div class='course-actions'>
+                        <a href='sections_by_course.php? id=$idcours  &  nbsection= $pos  ' class='btn-small'>Voir les sections</a>
+                        <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
+                        <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
-                </div>';
+                </div>";
                 }
                 ?>
-                
-                <!-- Cours 2 -->
-                <!-- <div class="course-card">
-                    <div class="course-header">
-                        <span class="level intermediate">Intermédiaire</span>
-                        <h3>PHP 8 Procédural & MySQL</h3>
-                    </div>
-                    <p class="course-desc">
-                        Maîtrisez le PHP procédural et les bases de données MySQL pour vos projets.
-                    </p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-book-open"></i> 18 sections</span>
-                        <span><i class="fas fa-clock"></i> Créé le 20/11/2025</span>
-                    </div>
-                    <div class="course-actions">
-                        <a href="sections_by_course.php?id=2" class="btn-small">Voir les sections</a>
-                        <a href="courses_edit.php?id=2" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="courses_delete.php?id=2" class="btn-delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </div> -->
-
-                <!-- Cours 3 -->
-                <!-- <div class="course-card">
-                    <div class="course-header">
-                        <span class="level advanced">Avancé</span>
-                        <h3>JavaScript Moderne ES6+</h3>
-                    </div>
-                    <p class="course-desc">
-                        Domptez les fonctionnalités avancées de JavaScript et les APIs modernes.
-                    </p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-book-open"></i> 25 sections</span>
-                        <span><i class="fas fa-clock"></i> Créé le 28/11/2025</span>
-                    </div>
-                    <div class="course-actions">
-                        <a href="sections_by_course.php?id=3" class="btn-small">Voir les sections</a>
-                        <a href="courses_edit.php?id=3" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="courses_delete.php?id=3" class="btn-delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </div> -->
-        
+                     
             </div>
         </div>
     </main>
@@ -122,7 +83,6 @@ EOD;
     <?php include 'footer.php'; ?>
 
     <script>
-        // Switch thème clair/sombre (optionnel, tu peux supprimer si tu veux 0 JS)
         const toggleh = document.getElementById('theme-switch');
         toggle.addEventListener('change', () => {
             document.body.classList.toggle('light-theme');

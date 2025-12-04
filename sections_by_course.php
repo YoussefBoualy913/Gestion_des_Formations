@@ -9,35 +9,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php';
+          require_once 'config.php';
+     ?>
 
     <main class="main-container">
         <div class="container">
-            <div class="page-header">
+            <?php
+            $id= $_GET["id"];
+            $sql = "select title,level from courses where id = $id";
+            $result= mysqli_query($conect,$sql);
+            $row=mysqli_fetch_assoc($result);
+            $titlecours =$row["title"];
+            $levelecours =$row["level"];
+            $nbsection = $_GET["nbsection"];
+            
+            echo"<div class='page-header'>
                 <div>
-                    <h2>PHP 8 Procédural & MySQL</h2>
-                    <p class="course-subtitle">18 sections • Niveau Intermédiaire</p>
-                </div>
-                <a href="sections_create.php?course_id=2" class="btn-primary">
-                    <i class="fas fa-plus"></i> Ajouter une section
-                </a>
-            </div>
+                    <h2> $titlecours</h2>
+                    <p class='course-subtitle'>$nbsection sections • Niveau $levelecours</p>    
+                    </div>
+                    <a href='sections_create.php?course_id=2' class='btn-primary'>
+                        <i class='fas fa-plus'></i> Ajouter une section
+                        </a>
+            </div>"
 
+            ?>         
             <div class="sections-list">
-                <!-- Exemple de section -->
-                <div class="section-item">
-                    <div class="section-order">#1</div>
-                    <div class="section-content">
-                        <h4>Introduction au projet LMS</h4>
-                        <p>Présentation du brief et des objectifs du mini-projet.</p>
+            <?php 
+                            
+            $id= $_GET["id"];
+            $sql = "select * from sections where course_id = $id";
+             $result= mysqli_query($conect,$sql);
+                
+                while($row=mysqli_fetch_assoc($result)){
+                    $position =$row["position"];
+                    $title =$row["title"];
+                    $content =$row["content"];
+               echo  "<div class='section-item'>
+                    <div class='section-order'>$position</div>
+                    <div class='section-content'>
+                        <h4> $title</h4>
+                        <p>$content</p>
                     </div>
-                    <div class="section-actions">
-                        <a href="sections_edit.php?id=10" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="sections_delete.php?id=10" class="btn-delete"><i class="fas fa-trash"></i></a>
+                    <div class='section-actions'>
+                        <a href='sections_edit.php?id=10' class='btn-edit'><i class='fas fa-edit'></i></a>
+                        <a href='sections_delete.php?id=10' class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
-                </div>
-
-                <div class="section-item">
+                </div>";
+                }
+                ?>
+                <!-- <div class="section-item">
                     <div class="section-order">#2</div>
                     <div class="section-content">
                         <h4>Conception de la base de données (ERD)</h4>
@@ -47,9 +69,9 @@
                         <a href="sections_edit.php?id=11" class="btn-edit"><i class="fas fa-edit"></i></a>
                         <a href="sections_delete.php?id=11" class="btn-delete"><i class="fas fa-trash"></i></a>
                     </div>
-                </div>
+                </div> -->
 
-                <!-- Tu répètes autant que nécessaire -->
+               
             </div>
 
             <div style="margin-top: 2rem;">
