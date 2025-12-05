@@ -51,7 +51,7 @@
         </div>
     </main>
     <?php 
-    if(isset($_POST)){
+    if(isset($_POST["tilte"])){
      $title=$_POST["title"];
     $description=$_POST["description"];
     $level=$_POST["level"];

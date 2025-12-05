@@ -23,13 +23,12 @@
 
                     <div class="form-group">
                         <label for="title">Titre du cours *</label>
-                        <input type="text" id="title" name="title" required placeholder="Ex : PHP 8 & MySQL de A à Z">
+                        <input type="text" id="title" name="title"  placeholder="Ex : PHP 8 & MySQL de A à Z">
                     </div>
 
                     <div class="form-group">
                         <label for="level">Niveau *</label>
-                        <select id="level" name="level" required>
-                            <option value="">Choisir un niveau</option>
+                        <select id="level" name="level" >
                             <option value="Débutant">Débutant</option>
                             <option value="Intermédiaire">Intermédiaire</option>
                             <option value="Avancé">Avancé</option>
@@ -40,28 +39,46 @@
                         <label for="description">Description</label>
                         <textarea id="description" name="description" rows="6" placeholder="Présentez brièvement le contenu du cours..."></textarea>
                     </div>
+                     <div class="form-group">
+                        <label for="title">image</label>
+                        <input type="file" id="image" name=""  plimageaceholder="ajouter un image">
+                    </div>
 
+  <?php   
+    if(isset($_POST["submit"])){
+        if(empty($_POST["title"])){
+            echo "<p style='color:red;'>title ne  doit etre pas vide </p> ";
+            return;
+            
+        } elseif(!in_array($_POST["level"],["Débutant","Intermédiaire","Avancé"])){
+              echo '<p style="color:red;">"'.$_POST["level"].'" level n existpas! </p> ';
+        }
+        else {
+           
+            
+            $title=$_POST["title"];
+            $description=$_POST["description"];
+            $level=$_POST["level"];
+            
+            $sql = ( "insert into  `courses`(`title`,`description`,`level`) values('$title','$description','$level')");
+            $result= mysqli_query($conect,$sql);
+             echo '<p style="color:green;"> le cours a eteit enregistrer avec succer </p> ';
+        }
+        
+    }
+    ?>
                     <div class="form-actions">
                         <a href="courses_list.php" class="btn-secondary">Annuler</a>
-                        <button type="submit" class="btn-primary">
+                        <button type="submit" name="submit" class="btn-primary">
                             <i class="fas fa-save"></i> Enregistrer le cours
                         </button>
                     </div>
                 </form>
-            </div>
+    </div>
         </div>
     </main>
 
-    <?php 
-    if(isset($_POST["title"])){
-    $title=$_POST["title"];
-    $description=$_POST["description"];
-    $level=$_POST["level"];
-
-    $sql = ( "insert into  `courses`(`title`,`description`,`level`) values('$title','$description','$level')");
-    $result= mysqli_query($conect,$sql);
-    }
-    ?>
+   
     <?php include 'footer.php'; ?>
 </body>
 </html>

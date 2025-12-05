@@ -28,7 +28,7 @@
             
             <div class="courses-grid">
                 
-                <?php 
+    <?php 
                 $sql = <<<EOD
     SELECT COALESCE(MAX(s.position), 0)  max_position, 
        c.id,
@@ -62,7 +62,7 @@ EOD;
                     <div class="course-meta">';
                     $idcours=$row['id'];
                     $pos= $row["max_position"]; 
-                    $datecreet= $row["max_position"];
+                    $datecreet= $row["created_at"];
                     
                        echo  "<span><i class='fas fa-book-open'></i> $pos sections</span>
                         <span><i class='fas fa-clock'></i> Créé le $datecreet </span>

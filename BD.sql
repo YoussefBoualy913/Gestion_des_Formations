@@ -20,10 +20,3 @@ FOREIGN KEY (course_id) REFERENCES courses(id)
 UNIQUE(course_id,position);
 );
 
--- chalenge_1_sql
-SELECT * from courses 
-WHERE level="Intermédiaire" and title LIKE "101%"
-ORDER BY title ASC;
--- chalenge_2_sql
-SELECT level,COUNT(level) AS nb_coures FROM courses
-GROUP BY level

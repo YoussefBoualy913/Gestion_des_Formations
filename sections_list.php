@@ -35,45 +35,61 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
-                        <tr>
-                            <td>1</td>
-                            <td>Introduction au projet LMS</td>
-                            <td><a href="sections_by_course.php?id=2" class="course-link">PHP 8 Procédural & MySQL</a></td>
-                            <td><span class="level intermediate">Intermédiaire</span></td>
-                            <td>1</td>
-                            <td>20/11/2025</td>
-                            <td class="actions-cell">
-                                <a href="sections_edit.php?id=10" class="btn-edit"><i class="fas fa-edit"></i></a>
-                                <a href="sections_delete.php?id=10" class="btn-delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php   
+                          $sql = <<<EOD
+    SELECT (
+        SELECT MAX(position) 
+        FROM sections 
+        WHERE course_id = c.id
+    ) AS max_position,
+       c.id as idcours,
+       s.id,
+       s.title as titlesection, 
+       s.created_at,
+       s.position,
+       c.level,
+       c.title
+FROM sections s
+LEFT JOIN courses c
+ON c.id = s.course_id
 
-                        <tr>
-                            <td>2</td>
-                            <td>Les variables et types de données</td>
-                            <td><a href="sections_by_course.php?id=1" class="course-link">HTML & CSS de A à Z</a></td>
-                            <td><span class="level beginner">Débutant</span></td>
-                            <td>3</td>
-                            <td>16/11/2025</td>
-                            <td class="actions-cell">
-                                <a href="sections_edit.php?id=15" class="btn-edit"><i class="fas fa-edit"></i></a>
-                                <a href="sections_delete.php?id=15" class="btn-delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+EOD;
+$result= mysqli_query($conect,$sql);
+                
+                while($row=mysqli_fetch_assoc($result)){
+                    $id=$row["id"];
+                    $titlesection=$row["titlesection"];
+                    $createdat=$row["created_at"];
+                    $position=$row["position"];
+                    $titlecours=$row["title"];
+                    $level=$row["level"];
+                    $idcours=$row["idcours"];
+                    $bnsection=$row["max_position"];
+                    
+echo "
+<tr>
+    <td>$id</td>
+    <td>$titlesection</td>
+    <td><a href='sections_by_course.php? id=$idcours  &  nbsection= $bnsection' class='course-link'>$titlecours</a></td>";
+   if($level == "Intermédiaire"){
+   echo" <td><span class='level intermediate'>$level</span></td>";
+}elseif( $level == "Intermédiaire" ){
+       echo " <td><span class='level beginner'>$level</span></td>";
+       
+    }else{
+       echo " <td><span class='level advanced'>$level</span></td>";
 
-                        <tr>
-                            <td>3</td>
-                            <td>Promesses et Async/Await</td>
-                            <td><a href="sections_by_course.php?id=3" class="course-link">JavaScript Moderne ES6+</a></td>
-                            <td><span class="level advanced">Avancé</span></td>
-                            <td>15</td>
-                            <td>29/11/2025</td>
-                            <td class="actions-cell">
-                                <a href="sections_edit.php?id=27" class="btn-edit"><i class="fas fa-edit"></i></a>
-                                <a href="sections_delete.php?id=27" class="btn-delete"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
+   }
+    echo "
+    <td>$position</td>
+    <td>$createdat</td>
+    <td class='actions-cell'>
+        <a href='sections_edit.php? id=10' class='btn-edit'><i class='fas fa-edit'></i></a>
+        <a href='sections_delete.php?id=10' class='btn-delete'><i class='fas fa-trash'></i></a>
+    </td>
+</tr>";}
+                                ?>
+
                        
                     </tbody>
                 </table>

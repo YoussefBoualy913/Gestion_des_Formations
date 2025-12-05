@@ -59,19 +59,6 @@
                 </div>";
                 }
                 ?>
-                <!-- <div class="section-item">
-                    <div class="section-order">#2</div>
-                    <div class="section-content">
-                        <h4>Conception de la base de données (ERD)</h4>
-                        <p>Création des tables courses et sections avec relation 1:N.</p>
-                    </div>
-                    <div class="section-actions">
-                        <a href="sections_edit.php?id=11" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="sections_delete.php?id=11" class="btn-delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </div> -->
-
-               
             </div>
 
             <div style="margin-top: 2rem;">
