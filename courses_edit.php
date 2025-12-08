@@ -16,18 +16,21 @@
             <div class="form-wrapper">
                 <h2><i class="fas fa-book-medical"></i>Modifier le cours</h2>
                
-
+                <?php
+                 ?> 
                 <form action="courses_edit.php" method="POST" class="course-form">
-                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                <input type="hidden" name="id" value="<?php 
+                if(isset($_GET['id'])){echo $_GET['id'] ;}else{echo $_POST['id'] ;}
+                ?>">
 
                     <div class="form-group">
                         <label for="title">Titre du cours *</label>
-                        <input type="text" id="title" name="title" required placeholder="Ex : PHP 8 & MySQL de A à Z">
+                        <input type="text" id="title" name="title"  placeholder="Ex : PHP 8 & MySQL de A à Z">
                     </div>
 
                     <div class="form-group">
                         <label for="level">Niveau *</label>
-                        <select id="level" name="level" required>
+                        <select id="level" name="level" >
                             <option value="">Choisir un niveau</option>
                             <option value="Débutant">Débutant</option>
                             <option value="Intermédiaire">Intermédiaire</option>
@@ -39,10 +42,31 @@
                         <label for="description">Description</label>
                         <textarea id="description" name="description" rows="6" placeholder="Présentez brièvement le contenu du cours..."></textarea>
                     </div>
+    <?php 
+
+    
+    if(isset($_POST["submit"])){
+         if(empty($_POST["title"])){
+            echo "<p style='color:red;'>title ne  doit etre pas vide </p> ";
+            
+        } elseif(!in_array($_POST["level"],["Débutant","Intermédiaire","Avancé"])){
+              echo '<p style="color:red;">"'.$_POST["level"].'" level n exist pas! </p> ';
+        }else{
+    $title=$_POST["title"];
+    $description=$_POST["description"];
+    $level=$_POST["level"];
+    $id=$_POST["id"];
+    $sql = "UPDATE `courses` SET `title`='$title',`description`='$description',`level`='$level' WHERE id=$id";
+    $result= mysqli_query($conect,$sql);
+    header('location:courses_list.php?');
+        }
+     
+    }
+    ?>
 
                     <div class="form-actions">
                         <a href="courses_list.php" class="btn-secondary">Annuler</a>
-                        <button type="submit" class="btn-primary">
+                        <button type="submit" name="submit" class="btn-primary">
                             <i class="fas fa-save"></i> Enregistrer le cours
                         </button>
                     </div>
@@ -50,17 +74,6 @@
             </div>
         </div>
     </main>
-    <?php 
-    if(isset($_POST["tilte"])){
-     $title=$_POST["title"];
-    $description=$_POST["description"];
-    $level=$_POST["level"];
-    $id=$_POST["id"];
- $sql = "UPDATE `courses` SET `title`='$title',`description`='$description',`level`='$level' WHERE id=$id";
-    $result= mysqli_query($conect,$sql);
-    header('location:courses_list.php?');
-    }
-    ?>
     <?php include 'footer.php'; ?>
 </body>
 </html>

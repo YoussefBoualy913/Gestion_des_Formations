@@ -16,20 +16,21 @@
     <main class="main-container">
         <div class="container">
             <?php
+            $nbsection = $_GET["nbsection"];
             $id= $_GET["id"];
             $sql = "select title,level from courses where id = $id";
             $result= mysqli_query($conect,$sql);
             $row=mysqli_fetch_assoc($result);
             $titlecours =$row["title"];
-            $levelecours =$row["level"];
-            $nbsection = $_GET["nbsection"];
+            $levelecours =$row["level"]; 
+
             
             echo"<div class='page-header'>
                 <div>
                     <h2> $titlecours</h2>
                     <p class='course-subtitle'>$nbsection sections • Niveau $levelecours</p>    
                     </div>
-                    <a href='sections_create.php?course_id=2' class='btn-primary'>
+                    <a href=sections_create.php?course_id=$id' class='btn-primary'>
                         <i class='fas fa-plus'></i> Ajouter une section
                         </a>
             </div>"

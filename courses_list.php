@@ -68,8 +68,8 @@ EOD;
                         <span><i class='fas fa-clock'></i> Créé le $datecreet </span>
                     </div>
                         <div class='course-actions'>
-                        <a href='sections_by_course.php? id=$idcours  &  nbsection= $pos  ' class='btn-small'>Voir les sections</a>
-                        <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
+                        <a href='sections_by_course.php? id=$idcours  &  nbsection= $pos' class='btn-small'>Voir les sections</a>
+                        <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edi'></i></a>
                         <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
                 </div>";
@@ -82,11 +82,6 @@ EOD;
 
     <?php include 'footer.php'; ?>
 
-    <script>
-        const toggleh = document.getElementById('theme-switch');
-        toggle.addEventListener('change', () => {
-            document.body.classList.toggle('light-theme');
-        });
-    </script>
+    
 </body>
 </html>

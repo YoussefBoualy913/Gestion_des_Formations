@@ -8,7 +8,7 @@
             <a href="sections_list.php" class="nav-link">
         <i class="fas fa-list-ol"></i> Toutes les sections
     </a>
-            <a href="#" class="nav-link"><i class="fas fa-user-shield"></i> Admin</a>
+           
         </nav>
         <div class="theme-toggle">
             <input type="checkbox" id="theme-switch">

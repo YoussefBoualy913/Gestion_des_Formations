@@ -51,10 +51,9 @@
             return;
             
         } elseif(!in_array($_POST["level"],["Débutant","Intermédiaire","Avancé"])){
-              echo '<p style="color:red;">"'.$_POST["level"].'" level n existpas! </p> ';
+              echo '<p style="color:red;">"'.$_POST["level"].'" level n exist pas! </p> ';
         }
         else {
-           
             
             $title=$_POST["title"];
             $description=$_POST["description"];
@@ -77,8 +76,6 @@
     </div>
         </div>
     </main>
-
-   
     <?php include 'footer.php'; ?>
 </body>
 </html>
