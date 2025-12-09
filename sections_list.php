@@ -70,7 +70,7 @@ echo "
 <tr>
     <td>$id</td>
     <td>$titlesection</td>
-    <td><a href='sections_by_course.php? id=$idcours  &  nbsection= $bnsection' class='course-link'>$titlecours</a></td>";
+    <td><a href='sections_by_course.php? course_id=$idcours ' class='course-link'>$titlecours</a></td>";
    if($level == "Intermédiaire"){
    echo" <td><span class='level intermediate'>$level</span></td>";
 }elseif( $level == "Intermédiaire" ){
@@ -84,8 +84,8 @@ echo "
     <td>$position</td>
     <td>$createdat</td>
     <td class='actions-cell'>
-        <a href='sections_edit.php? id=10' class='btn-edit'><i class='fas fa-edit'></i></a>
-        <a href='sections_delete.php?id=10' class='btn-delete'><i class='fas fa-trash'></i></a>
+        <a href='sections_edit.php? id=$id & course_id=$idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
+        <a href='sections_delete.php? id=$id' class='btn-delete'><i class='fas fa-trash'></i></a>
     </td>
 </tr>";}
                                 ?>

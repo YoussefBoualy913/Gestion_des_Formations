@@ -16,21 +16,24 @@
     <main class="main-container">
         <div class="container">
             <?php
-            $nbsection = $_GET["nbsection"];
-            $id= $_GET["id"];
+            $id = $_GET["course_id"];
             $sql = "select title,level from courses where id = $id";
-            $result= mysqli_query($conect,$sql);
+            $result = mysqli_query($conect,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $titlecours = $row["title"];
+            $levelecours = $row["level"]; 
+            
+            $sql = "select count(*)as nb_section from sections where course_id = $id";
+            $result = mysqli_query($conect,$sql);
             $row=mysqli_fetch_assoc($result);
-            $titlecours =$row["title"];
-            $levelecours =$row["level"]; 
-
+            $nbsection = $row["nb_section"];
             
             echo"<div class='page-header'>
                 <div>
                     <h2> $titlecours</h2>
                     <p class='course-subtitle'>$nbsection sections • Niveau $levelecours</p>    
                     </div>
-                    <a href=sections_create.php?course_id=$id' class='btn-primary'>
+                    <a href='sections_create.php? course_id=$id' class='btn-primary'>
                         <i class='fas fa-plus'></i> Ajouter une section
                         </a>
             </div>"
@@ -39,23 +42,24 @@
             <div class="sections-list">
             <?php 
                             
-            $id= $_GET["id"];
-            $sql = "select * from sections where course_id = $id";
-             $result= mysqli_query($conect,$sql);
+            $sql = "select * from  sections where course_id = $id";
+            $result = mysqli_query($conect,$sql);
+            
+            while($row = mysqli_fetch_assoc($result)){
+                $position = $row["position"];
+                $title = $row["title"];
+                $content = $row["content"];
+                $section_id = $row["id"];
                 
-                while($row=mysqli_fetch_assoc($result)){
-                    $position =$row["position"];
-                    $title =$row["title"];
-                    $content =$row["content"];
-               echo  "<div class='section-item'>
+                    echo  "<div class='section-item'>
                     <div class='section-order'>$position</div>
                     <div class='section-content'>
-                        <h4> $title</h4>
-                        <p>$content</p>
+                    <h4> $title</h4>
+                    <p>$content</p>
                     </div>
                     <div class='section-actions'>
-                        <a href='sections_edit.php?id=10' class='btn-edit'><i class='fas fa-edit'></i></a>
-                        <a href='sections_delete.php?id=10' class='btn-delete'><i class='fas fa-trash'></i></a>
+                        <a href='sections_edit.php? id=$section_id & course_id=$id & bysection=1' class='btn-edit'><i class='fas fa-edit'></i></a>
+                        <a href='sections_delete.php?  id=$section_id & course_id= $id ' class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
                 </div>";
                 }

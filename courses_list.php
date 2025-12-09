@@ -30,7 +30,7 @@
                 
     <?php 
                 $sql = <<<EOD
-    SELECT COALESCE(MAX(s.position), 0)  max_position, 
+    SELECT count(s.position) as max_position, 
        c.id,
        c.title, 
        c.level, 
@@ -68,7 +68,7 @@ EOD;
                         <span><i class='fas fa-clock'></i> Créé le $datecreet </span>
                     </div>
                         <div class='course-actions'>
-                        <a href='sections_by_course.php? id=$idcours  &  nbsection= $pos' class='btn-small'>Voir les sections</a>
+                        <a href='sections_by_course.php? course_id=$idcours ' class='btn-small'>Voir les sections</a>
                         <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edi'></i></a>
                         <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>

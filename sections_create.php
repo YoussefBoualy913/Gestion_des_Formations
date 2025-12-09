@@ -19,9 +19,9 @@
                 <h2><i class="fas fa-file-alt"></i> Nouvelle section</h2>
 <?php             
                   if(isset($_GET['course_id'])){
-                    $cour_id = $_GET["course_id"];
+                    $cour_id = number_format($_GET["course_id"]);
                   }else {
-                    $cour_id =  $_POST["course_id"];
+                    $cour_id =  number_format($_POST["course_id"]);
                   }
                   
                    $sql = "select title from courses where id =  $cour_id";
@@ -66,22 +66,18 @@
             $title = $_POST["title"];
             $content = $_POST["content"];
             $position = $_POST["position"];
-             if(isset($_GET['course_id'])){
-                    $cour_id = number_format($_GET["course_id"]);
-                  }else {
-                    $cour_id =  number_format($_POST["course_id"]);
-                  }
             
             $sql = "insert into  `sections`(`title`,`course_id`,`content`,`position`) values('$title','$cour_id','$content','$position')";
             $result = mysqli_query($conect,$sql);
-             echo '<p style="color:green;"> la sectoin a eteit enregistrer avec succer </p> ';
+
+            header('location:sections_by_course.php? course_id='.$cour_id);
         }
         
     }
 ?>
 
                     <div class="form-actions">
-                        <a href="sections_by_course.php?id=2" class="btn-secondary">Annuler</a>
+                        <a href="sections_by_course.php?id=<?=$cour_id ?>" class="btn-secondary">Annuler</a>
                         <button type="submit" class="btn-primary" name="submit">
                             <i class="fas fa-save"></i> Enregistrer la section
                         </button>
