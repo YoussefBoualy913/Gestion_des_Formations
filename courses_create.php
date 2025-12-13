@@ -61,7 +61,7 @@
             
             $sql = ( "insert into  `courses`(`title`,`description`,`level`) values('$title','$description','$level')");
             $result= mysqli_query($conect,$sql);
-             echo '<p style="color:green;"> le cours a eteit enregistrer avec succer </p> ';
+             header('location:courses_list.php?');
         }
         
     }
@@ -77,5 +77,6 @@
         </div>
     </main>
     <?php include 'footer.php'; ?>
+    <script src="script.js"> </script>
 </body>
 </html>

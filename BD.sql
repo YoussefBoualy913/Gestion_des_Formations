@@ -3,8 +3,8 @@ CREATE DATABASE formation
 -- crée table courses
 CREATE TABLE courses(
 id INT PRIMARY KEY AUTO_INCREMENT,
-title VARCHAR(50),
-description TEXT(200),
+title VARCHAR(50) NOT NULL,
+description TEXT,
 level ENUM('Débutant', 'Intermédiaire', 'Avancé'),
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

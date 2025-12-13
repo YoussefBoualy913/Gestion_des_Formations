@@ -69,7 +69,7 @@ EOD;
                     </div>
                         <div class='course-actions'>
                         <a href='sections_by_course.php? course_id=$idcours ' class='btn-small'>Voir les sections</a>
-                        <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edi'></i></a>
+                        <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
                         <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
                 </div>";
