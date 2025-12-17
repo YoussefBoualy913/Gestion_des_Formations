@@ -23,12 +23,24 @@
                 <form action="login_process.php" method="POST" class="auth-form">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                        <input type="email" id="email" name="email"  placeholder="votre@email.com">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                        <input type="password" id="password" name="password"  placeholder="••••••••">
+                        <?php if(isset($_GET['errure'])){
+                            if($_GET['errure'] == '0'){
+                            echo "<p style='color:red'>
+                                    mot de passe incorrect!
+                                 </p>";}
+                             if($_GET['errure'] == '1'){
+                            echo "<p style='color:red'>
+                                    vous n'etes pas inscrire!
+                                 </p>";}
+
+                        }
+                         ?>
                     </div>
 
                     <button type="submit" class="btn-primary full-width">

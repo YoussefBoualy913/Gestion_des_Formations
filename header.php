@@ -5,8 +5,8 @@
         </div>
         <nav class="nav">
             <a href="courses_list.php" class="nav-link active"><i class="fas fa-book"></i> Cours</a>
-            <a href="sections_list.php" class="nav-link">
-        <i class="fas fa-list-ol"></i> Toutes les sections
+            <a href="logout.php" class="nav-link deconnect">
+        <i class="fas fa-list-ol"></i> Se deconnecté
     </a>
            
         </nav>

@@ -1,3 +1,6 @@
+ <?php 
+ session_start();
+ ?>  
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -66,6 +69,7 @@ EOD;
                     
                        echo  "<span><i class='fas fa-book-open'></i> $pos sections</span>
                         <span><i class='fas fa-clock'></i> Créé le $datecreet </span>
+                         <a href='enroll.php? course_id=$idcours ' class='btn-primary inscricours'><i class='fas fa-plus-circle'></i> S'inscrire</a>
                     </div>
                         <div class='course-actions'>
                         <a href='sections_by_course.php? course_id=$idcours ' class='btn-small'>Voir les sections</a>
@@ -73,7 +77,7 @@ EOD;
                         <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
                 </div>";
-                }
+            }
                 ?>
                      
             </div>
@@ -82,6 +86,6 @@ EOD;
 
     <?php include 'footer.php'; ?>
 
-    
+    <script src="script.js"> </script>
 </body>
 </html>
