@@ -1,5 +1,9 @@
  <?php 
  session_start();
+ if(!isset($_SESSION['usere_id'])){
+     header('location:login.php?');
+             exit;
+}
  ?>  
 <!DOCTYPE html>
 <html lang="fr">

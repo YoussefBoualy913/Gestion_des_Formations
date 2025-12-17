@@ -6,7 +6,7 @@
         <nav class="nav">
             <a href="courses_list.php" class="nav-link active"><i class="fas fa-book"></i> Cours</a>
             <a href="logout.php" class="nav-link deconnect">
-        <i class="fas fa-list-ol"></i> Se deconnecté
+       <i class="fas fa-sign-out-alt"></i> Se deconnecté
     </a>
            
         </nav>
