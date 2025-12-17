@@ -73,7 +73,7 @@ echo "
     <td><a href='sections_by_course.php? course_id=$idcours ' class='course-link'>$titlecours</a></td>";
    if($level == "Intermédiaire"){
    echo" <td><span class='level intermediate'>$level</span></td>";
-}elseif( $level == "Intermédiaire" ){
+}elseif( $level == "Débutant" ){
        echo " <td><span class='level beginner'>$level</span></td>";
        
     }else{
