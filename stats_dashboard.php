@@ -29,36 +29,36 @@ if(!isset($_SESSION['usere_id'])){
                 <div class="stat-card">
                     <i class="fas fa-book"></i>
                     <h3>Nombre total des cours</h3>
-                    <span class="stat-value"><?php echo $row['totacours']; ?></span>
+                    <span class="stat-value"><?php echo $total_c['totalcours']; ?></span>
                 </div>
 
                 <!-- KPI 2 -->
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
                     <h3>Total utilisateurs</h3>
-                    <span class="stat-value">156</span>
+                    <span class="stat-value"><?php echo $total_u['totalutilisature']; ?></span>
                 </div>
 
                 <!-- KPI 3 -->
                 <div class="stat-card">
                     <i class="fas fa-user-plus"></i>
                     <h3>Total inscriptions</h3>
-                    <span class="stat-value">89</span>
+                    <span class="stat-value"><?php echo $total_ins['totalinscription'];?></span>
                 </div>
 
                 <!-- KPI 4 -->
                 <div class="stat-card highlight">
                     <i class="fas fa-trophy"></i>
                     <h3>Cours le plus populaire</h3>
-                    <span class="stat-value">PHP & MySQL</span>
-                    <small>42 inscriptions</small>
+                    <p class="stat-value"><?php echo  $courplus_insc['title'];?></p>
+                    <small><?php echo  $courplus_insc['total'];?> inscriptions</small>
                 </div>
 
                 <!-- KPI 5 -->
                 <div class="stat-card">
                     <i class="fas fa-calculator"></i>
                     <h3>Moyenne sections/cours</h3>
-                    <span class="stat-value">14.5</span>
+                    <span class="stat-value"><?php echo   $Moyen_section['Moyensection'];?></span>
                 </div>
             </div>
 
@@ -66,7 +66,37 @@ if(!isset($_SESSION['usere_id'])){
                 <!-- Tableau 6 -->
                 <div class="table-card">
                     <h3>Cours avec plus de 5 sections</h3>
-                    <table class="styled-table">/* ... contenu tableau ... */</table>
+                    <table class="styled-table">
+                        <tr>
+                        <th>title</th>
+                        <th>level</th>
+                        <th>description</th>
+                        
+                        <th>nmbre de section</th>
+                        </tr>
+                        <tr>
+                            <?php 
+                            while( $cinq_section = mysqli_fetch_assoc( $result)){
+                                $title = $cinq_section['title'];
+                                $level = $cinq_section['level'];
+                                $description = $cinq_section['description'];
+                                $crée_dt= $cinq_section['created_at'];
+                                $total_sec = $cinq_section['totalsection'];
+                                echo"   <tr>
+                                <td>$title</td>
+                                <td>$level</td>
+                                <td>$description</td>
+                              
+                                <td> $total_sec</td>
+                                </tr>
+                               ";
+
+
+                            }
+                            
+                            ?>
+                        </tr>
+            </table>
                 </div>
 
                 <!-- Autres tableaux (tu rempliras plus tard) -->
