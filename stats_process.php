@@ -40,6 +40,27 @@ $sql1 = "select count(*) as totalcours from  courses ";
                     INNER JOIN sections s on c.id = s.course_id
                     GROUP BY  c.title,c.description,level,c.created_at
                     HAVING totalsection > 5";
-            $result = mysqli_query($conect,$sql6);
+            $result6 = mysqli_query($conect,$sql6);
+
+            $sql7 = "SELECT  name,email,created_at FROM `users` WHERE date(created_at) >='2025-1-1'";
+            $result7 = mysqli_query($conect,$sql7);
+
+              $sql8 = "SELECT c.title,c.description,c.level
+                    FROM courses c
+                    LEFT JOIN  enrollments e on c.id = e.course_id
+                    WHERE e.course_id is null";
+
+            $result8 = mysqli_query($conect,$sql8);
+
+             $sql9 = "SELECT users.name,courses.title as nom_de_course,enrollments.inserte_at
+                      FROM courses
+                      JOIN enrollments on courses.id = enrollments.course_id
+                      JOIN users on users.id = enrollments.usere_id
+                      WHERE  inserte_at = (SELECT MAX(inserte_at)
+                      FROM enrollments);";
+
+            $result9 = mysqli_query($conect,$sql9);
+           
+            
            
 ?>

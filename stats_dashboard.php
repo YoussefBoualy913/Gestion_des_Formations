@@ -76,7 +76,8 @@ if(!isset($_SESSION['usere_id'])){
                         </tr>
                         <tr>
                             <?php 
-                            while( $cinq_section = mysqli_fetch_assoc( $result)){
+                            while( $cinq_section = mysqli_fetch_assoc($result6)){
+
                                 $title = $cinq_section['title'];
                                 $level = $cinq_section['level'];
                                 $description = $cinq_section['description'];
@@ -102,17 +103,102 @@ if(!isset($_SESSION['usere_id'])){
                 <!-- Autres tableaux (tu rempliras plus tard) -->
                 <div class="table-card">
                     <h3>Utilisateurs inscrits en 2025</h3>
-                    <table class="styled-table">/* ... */</table>
+                    <table class="styled-table">
+                          <tr>
+                        <th>name </th>
+                        <th>email</th>
+                        <th>dat d'inscription</th>
+                        
+                        </tr>
+                        <tr>
+                            <?php 
+                            while( $inscrire_in = mysqli_fetch_assoc( $result7)){
+                                $name = $inscrire_in['name'];
+                                $email = $inscrire_in['email'];
+                                $created_at = $inscrire_in['created_at'];
+                            
+                                echo"   <tr>
+                                <td> $name</td>
+                                <td>$email</td>
+                                <td>$created_at</td>
+                              
+                                </tr>
+                               ";
+
+
+                            }
+                            
+                            ?>
+                        </tr>
+
+
+                    </table>
                 </div>
 
                 <div class="table-card">
                     <h3>Cours sans inscription</h3>
-                    <table class="styled-table">/* ... */</table>
+                    <table class="styled-table">
+                           <tr>
+                        <th>title </th>
+                        <th>description</th>
+                        <th>level</th>
+                        
+                        </tr>
+                        <tr>
+                            <?php 
+                            while( $cour_non_inscri = mysqli_fetch_assoc($result8)){
+                                $title8 = $cour_non_inscri['title'];
+                                $description8 = $cour_non_inscri['description'];
+                                $level8 = $cour_non_inscri['level'];
+                            
+                                echo"   <tr>
+                                <td>  $title8</td>
+                                <td>$description8</td>
+                                <td>$level8</td>
+                              
+                                </tr>
+                               ";
+
+
+                            }
+                            
+                            ?>
+                        </tr>
+
+                    </table>
                 </div>
 
                 <div class="table-card">
                     <h3>Dernières inscriptions</h3>
-                    <table class="styled-table">/* ... */</table>
+                    <table class="styled-table">
+                           <tr>
+                        <th>name </th>
+                        <th>nom de course </th>
+                        <th>date d'incription</th>
+                        
+                        </tr>
+                        <tr>
+                         <?php 
+                            while( $dernierinsriotion = mysqli_fetch_assoc($result9)){
+                                $name9 = $dernierinsriotion['name'];
+                                $nomdecours = $dernierinsriotion['nom_de_course'];
+                                $insert_at = $dernierinsriotion['inserte_at'];
+                            
+                                echo"   <tr>
+                                <td>$name9 </td>
+                                <td>$nomdecours</td>
+                                <td>$insert_at</td>
+                              
+                                </tr>
+                               ";
+
+
+                            }
+                            
+                            ?>
+                        </tr>
+
+                    </table>
                 </div>
             </div>
         </div>
