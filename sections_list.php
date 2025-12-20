@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toutes les sections - MonLMS</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+ <?php 
+ session_start();
+
+ ?>  
     <?php include 'header.php'; ?>
     <?php include 'config.php'; ?>
 
@@ -83,10 +76,14 @@ echo "
     echo "
     <td>$position</td>
     <td>$createdat</td>
-    <td class='actions-cell'>
-        <a href='sections_edit.php? id=$id & course_id=$idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
-        <a href='sections_delete.php? id=$id' class='btn-delete'><i class='fas fa-trash'></i></a>
-    </td>
+    <td class='actions-cell'>";
+     if(isset($_SESSION['usere_id'])){
+                         echo"
+                         <a href='sections_edit.php? id=$id & course_id=$idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
+                         <a href='sections_delete.php? id=$id' class='btn-delete'><i class='fas fa-trash'></i></a>
+                         ";
+                         }
+  echo"  </td>
 </tr>";}
                                 ?>
 
@@ -98,5 +95,3 @@ echo "
     </main>
 
     <?php include 'footer.php'; ?>
-</body>
-</html>

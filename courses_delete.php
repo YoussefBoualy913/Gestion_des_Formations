@@ -1,7 +1,7 @@
 
 <?php include'config.php';?>
 <?php 
-$id=$_GET["id"];
+$id=(int)$_GET["id"];
  $sql = ( "DELETE FROM  `courses` WHERE id='$id' ");
     $result= mysqli_query($conect,$sql);
 

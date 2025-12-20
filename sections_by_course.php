@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sections du cours - MonLMS</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+ <?php 
+ session_start();
+
+ ?> 
     <?php include 'header.php';
           require_once 'config.php';
      ?>
@@ -57,10 +50,16 @@
                     <h4> $title</h4>
                     <p>$content</p>
                     </div>
-                    <div class='section-actions'>
-                        <a href='sections_edit.php? id=$section_id & course_id=$id & bysection=1' class='btn-edit'><i class='fas fa-edit'></i></a>
-                        <a href='sections_delete.php?  id=$section_id & course_id= $id ' class='btn-delete'><i class='fas fa-trash'></i></a>
-                    </div>
+                    <div class='section-actions'>";
+                     if(isset($_SESSION['usere_id'])){
+                         echo"
+                         <a href='sections_edit.php? id=$section_id & course_id=$id & bysection=1' class='btn-edit'><i class='fas fa-edit'></i></a>
+                         <a href='sections_delete.php?  id=$section_id & course_id= $id ' class='btn-delete'><i class='fas fa-trash'></i></a>
+                         
+                         ";
+                         }
+
+                echo"    </div>
                 </div>";
                 }
                 ?>
@@ -75,5 +74,3 @@
     </main>
 
     <?php include 'footer.php'; ?>
-</body>
-</html>

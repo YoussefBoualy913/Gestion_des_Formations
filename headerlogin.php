@@ -15,10 +15,10 @@
             <h1><a href="courses_list.php" style="color:#8b5cf6; text-decoration:none;">MonLMS</a></h1>
         </div>
         <nav class="nav">
-            <a href="stats_dashboard.php" class="nav-link "><i class="fas fa-home"></i> Dashboard</a>
-            <a href="courses_list.php" class="nav-link "><i class="fas fa-book"></i> Cours</a>
-            <a href="my_courses.php" class="nav-link "><i class="fas fa-chalkboard-teacher"></i></i> My Cours</a>
-            <a href="logout.php" class="nav-link deconnect"><i class="fas fa-sign-out-alt"></i> Se deconnecté </a>
+           
+           
+           
+            
         </nav>
         <div class="theme-toggle">
             <input type="checkbox" id="theme-switch">
