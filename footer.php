@@ -12,3 +12,5 @@ if (toggle) {
     });
 }
 </script>
+</body>
+</html>
