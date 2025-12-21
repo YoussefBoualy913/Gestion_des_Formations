@@ -55,9 +55,12 @@
             $description=$_POST["description"];
             $level=$_POST["level"];
             
-            $sql = ( "insert into  `courses`(`title`,`description`,`level`) values('$title','$description','$level')");
-            $result= mysqli_query($conect,$sql);
+            $sql ="insert into  `courses`(`title`,`description`,`level`) values(?,?,?)";
+             $stmt = mysqli_prepare($conect, $sql);
+             mysqli_stmt_bind_param( $stmt,"sss",$title,$description,$level);
+             mysqli_stmt_execute($stmt);
              header('location:courses_list.php?');
+             exit;
         }
         
     }

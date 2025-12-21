@@ -12,7 +12,7 @@ if(!isset($_SESSION['usere_id'])){
 
     <main class="main-container">
         <div class="container">
-            <h2 class="dashboard-title"><i class="fas fa-chart-bar"></i> Tableau de bord Administrateur</h2>
+            <h2 class="dashboard-title"> 👋 Bienvenue <?=$_SESSION['name'];?> !</h2>
 
             <div class="stats-grid">
                 <!-- KPI 1 -->

@@ -19,8 +19,10 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $hash = password_hash("$password", PASSWORD_DEFAULT);
 
- $sql = ( "insert into  `users`(`name`,`email`,`password`) values('$name','$email','$hash')");
-            $result= mysqli_query($conect,$sql);
+ $sql ="insert into  `users`(`name`,`email`,`password`) values(?,?,?)";
+             $stmt = mysqli_prepare($conect, $sql);
+             mysqli_stmt_bind_param( $stmt,"sss",$name,$email,$hash);
+             mysqli_stmt_execute($stmt);
              header('location:login.php?');
              exit;
 }

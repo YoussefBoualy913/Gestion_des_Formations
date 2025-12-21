@@ -21,6 +21,8 @@ $password = $_POST['password'];
                    session_start();
                    $_SESSION['email'] = $email ;
                    $_SESSION['usere_id'] = $row['id'] ;
+                   $_SESSION['name'] = $row['name'] ;
+
                     header('location:stats_dashboard.php?');
                     exit;
                 } else {

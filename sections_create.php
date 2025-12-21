@@ -63,8 +63,11 @@
             $content = $_POST["content"];
             $position = $_POST["position"];
             
-            $sql = "insert into  `sections`(`title`,`course_id`,`content`,`position`) values('$title','$cour_id','$content','$position')";
-            $result = mysqli_query($conect,$sql);
+            $sql = "insert into  `sections`(`title`,`course_id`,`content`,`position`) values(?,?,?,?)";
+           
+             $stmt = mysqli_prepare($conect, $sql);
+             mysqli_stmt_bind_param( $stmt,"sisi",$title,$cour_id,$content,$position);
+             mysqli_stmt_execute($stmt);
 
             header('location:sections_by_course.php? course_id='.$cour_id);
         }

@@ -24,11 +24,16 @@
                     $id =  number_format($_POST["id"]);
                   }
                   
-                   $sql = "select title from courses where id =  $cour_id";
-                   $result = mysqli_query($conect,$sql);
+                   $sql1 = "select title from courses where id =  $cour_id";
+                   $result = mysqli_query($conect,$sql1);
                    $row = mysqli_fetch_assoc($result);
                    $cours_title = $row['title'];
-                   echo "<p class='course-subtitle'>Cours :$cours_title </p>"
+                   echo "<p class='course-subtitle'>Cours :$cours_title </p>";
+
+                    $sql2 = "select * from sections where id=$id";
+
+                     $result= mysqli_query($conect,$sql2);
+                     $row=mysqli_fetch_assoc($result);
                  ?>
 
                 <form action="sections_edit.php" method="POST" class="course-form">
@@ -49,21 +54,22 @@
                        else{echo $_POST['bysection'] ;}
                       echo "'>";
                     }
+                    
                     ?>
                     <div class="form-group">
                         <label for="title">Titre de la section *</label>
-                        <input type="text" id="title" name="title"  placeholder="Ex : Les boucles en PHP">
+                        <input type="text" id="title" name="title" value="<?=$row['title']; ?>"  placeholder="Ex : Les boucles en PHP">
                     </div>
 
                     <div class="form-group">
                         <label for="position">Position dans le cours *</label>
-                        <input type="number" id="position" name="position" min="1" value="1" >
+                        <input type="number" id="position" name="position" min="1" value="<?=$row['position']; ?>" >
                         <small>Plus le chiffre est grand, plus la section apparaît en bas</small>
                     </div>
 
                     <div class="form-group">
                         <label for="content">Contenu / Résumé</label>
-                        <textarea id="content" name="content" rows="10" placeholder="Écrivez ici le contenu détaillé de la section..."></textarea>
+                        <textarea id="content" name="content" rows="10" placeholder="Écrivez ici le contenu détaillé de la section..."><?=$row['content']; ?></textarea>
                     </div>
                     <?php
     if(isset($_POST["submit"])){
@@ -79,8 +85,12 @@
             $content = $_POST["content"];
             $position = $_POST["position"];
             
-            $sql = "UPDATE   `sections` set `title`='$title',`content`='$content',`position`='$position' WHERE id=$id";
-            $result = mysqli_query($conect,$sql);
+            $sql = "UPDATE   `sections` set `title`=?,`content`=?,`position`=? WHERE id=$id";
+           
+             $stmt = mysqli_prepare($conect, $sql);
+             mysqli_stmt_bind_param( $stmt,"ssi",$title,$content,$position);
+             mysqli_stmt_execute($stmt);
+
             if(isset($_GET["bysection"]) || isset($_POST["bysection"])){
             header('location:sections_by_course.php? course_id='.$cour_id);
             }else{

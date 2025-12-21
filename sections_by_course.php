@@ -9,7 +9,7 @@
     <main class="main-container">
         <div class="container">
             <?php
-            $id = $_GET["course_id"];
+            $id = (int)$_GET["course_id"];
             $sql = "select title,level from courses where id = $id";
             $result = mysqli_query($conect,$sql);
             $row = mysqli_fetch_assoc($result);

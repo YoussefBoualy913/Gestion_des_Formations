@@ -11,23 +11,27 @@
         <div class="container">
             <div class="form-wrapper">
                 <h2><i class="fas fa-book-medical"></i>Modifier le cours</h2>
+               <?php 
+                $id=(int)$_GET['id'];
+                $sql = "select * from courses where id=$id";
+
+                $result= mysqli_query($conect,$sql);
+                $row=mysqli_fetch_assoc($result);
+              
+               ?>
                
-                <?php
-                 ?> 
-                <form action="courses_edit.php" method="POST" class="course-form">
-                <input type="hidden" name="id" value="<?php 
-                if(isset($_GET['id'])){echo $_GET['id'] ;}else{echo $_POST['id'] ;}
-                ?>">
+                <form action='courses_edit.php? id=<?=$_GET['id'] ?>' method="POST" class="course-form">
+               
 
                     <div class="form-group">
                         <label for="title">Titre du cours *</label>
-                        <input type="text" id="title" name="title"  placeholder="Ex : PHP 8 & MySQL de A à Z">
+                        <input type="text" id="title" name="title" value="<?=$row['title']; ?>" placeholder="Ex : PHP 8 & MySQL de A à Z">
                     </div>
 
                     <div class="form-group">
                         <label for="level">Niveau *</label>
-                        <select id="level" name="level" >
-                            <option value="">Choisir un niveau</option>
+                        <select id="level" name="level" value="<?=$row['level']; ?>">
+            
                             <option value="Débutant">Débutant</option>
                             <option value="Intermédiaire">Intermédiaire</option>
                             <option value="Avancé">Avancé</option>
@@ -36,7 +40,7 @@
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="6" placeholder="Présentez brièvement le contenu du cours..."></textarea>
+                        <textarea id="description" name="description" rows="6" placeholder="Présentez brièvement le contenu du cours..."><?=$row['description']; ?></textarea>
                     </div>
     <?php 
 
@@ -51,10 +55,13 @@
     $title=$_POST["title"];
     $description=$_POST["description"];
     $level=$_POST["level"];
-    $id=$_POST["id"];
-    $sql = "UPDATE `courses` SET `title`='$title',`description`='$description',`level`='$level' WHERE id=$id";
-    $result= mysqli_query($conect,$sql);
+   
+    $sql = "UPDATE `courses` SET `title`=?,`description`=?,`level`=? WHERE id=$id";
+     $stmt = mysqli_prepare($conect, $sql);
+             mysqli_stmt_bind_param( $stmt,"sss",$title,$description,$level);
+             mysqli_stmt_execute($stmt);
     header('location:courses_list.php?');
+    exit;
         }
      
     }

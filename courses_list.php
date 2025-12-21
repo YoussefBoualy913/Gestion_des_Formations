@@ -10,12 +10,17 @@
        <div class="container">
            <div class="page-header">
                <h2><i class="fas fa-graduation-cap"></i> Gestion des Cours</h2>
+
+               <?php   if(isset($_SESSION['usere_id'])){
+                         echo '
                <a href="courses_create.php" class="btn-primary">
                    <i class="fas fa-plus"></i> Nouveau cours
                 </a>
                 <a href="sections_list.php" class="btn-secondary">
                     Toutes les sections
-                </a>
+                </a>';}
+                ?>
+
             </div>
             
             
@@ -62,29 +67,29 @@ EOD;
                         <span><i class='fas fa-clock'></i> Créé le $datecreet </span>
                           <a href='";
                           if(isset($_SESSION['usere_id'])){
-                         echo"enroll.php";
+                         echo"enroll.php? course_id=$idcours'";
                          }else{
-                              echo "login.php";
+                              echo "login.php? '";
                          }  
-                       echo "'? course_id=$idcours ' class='btn-primary "; 
+                       echo "class='btn-primary "; 
                         if(isset($_SESSION['usere_id'])){
                          echo"inscricours";
                          }
                        
-                       echo "'><i class='fas fa-plus-circle'></i> S'inscrire</a>";
+                       echo "'><i class='fas fa-plus-circle'></i> S'inscrire</a>
                          
-                 echo"
-                    </div>
+                 
+                       </div>";
+                       if(isset($_SESSION['usere_id'])){
+                        echo"
                         <div class='course-actions'>
-                        <a href='sections_by_course.php? course_id=$idcours ' class='btn-small'>Voir les sections</a>";
-                         if(isset($_SESSION['usere_id'])){
-                         echo"
+                         <a href='sections_by_course.php? course_id=$idcours ' class='btn-small'>Voir les sections</a>
                          <a href='courses_edit.php? id= $idcours' class='btn-edit'><i class='fas fa-edit'></i></a>
                          <a href='courses_delete.php? id= $idcours'  class='btn-delete'><i class='fas fa-trash'></i></a>
-                         ";
-                         }
-                echo"    </div>
-                </div>";
+                         
+                         </div>";
+                        }
+                    echo"  </div>";
             }
                 ?>
                      
