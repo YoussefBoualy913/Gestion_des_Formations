@@ -28,7 +28,7 @@
             <div class="courses-grid">
                 
     <?php 
-                $sql = <<<EOD
+                $sql ="
     SELECT count(s.position) as max_position, 
        c.id,
        c.title, 
@@ -39,7 +39,7 @@ FROM courses c
 LEFT JOIN sections s
 ON c.id = s.course_id
 GROUP BY c.id, c.title, c.level, c.description, c.created_at
-EOD;
+";
 
                 $result= mysqli_query($conect,$sql);
                 

@@ -11,7 +11,7 @@
         
           $user_id = $_SESSION['usere_id'];
           $sql ="SELECT 
-                 users.name,
+                
                  courses.title,
                  courses.level,
                  courses.description ,
@@ -20,9 +20,8 @@
                  FROM sections
                  JOIN courses on courses.id = sections.course_id
                  JOIN enrollments on courses.id = enrollments.course_id
-                 JOIN users on users.id = enrollments.usere_id
-                 WHERE users.id= $user_id 
-                 GROUP BY  users.name,
+                 WHERE enrollments.usere_id= $user_id 
+                 GROUP BY 
                  courses.title,
                  courses.level,
                  courses.description ,
